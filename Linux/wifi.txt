@@ -9,3 +9,9 @@ nmcli connection show <hotspot UUID>
 
 4. Adjust settings to autoconnect yes and up the priority
 sudo nmcli connection modify <hotspot UUID> connection.autoconnect yes connection.autoconnect-priority 100
+
+5. Switch to only 2.4 GHz
+sudo nmcli connection modify <hotspot UUID> 802-11-wireless.band bg
+
+5. Set the hotspot to not broadcast it's SSID
+sudo nmcli connection modify 00ee1e48-9385-4810-a516-dbd8548086e4 802-11-wireless.hidden yes

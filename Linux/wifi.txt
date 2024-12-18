@@ -1,0 +1,11 @@
+1. Create wifi
+sudo nmcli device wifi hotspot ssid Kurt password Penis6969_ ifname wlan0
+
+2. List the current connections, to get the UUID
+nmcli connection
+
+3. Show the settings of the Kurt connection
+nmcli connection show <hotspot UUID>
+
+4. Adjust settings to autoconnect yes and up the priority
+sudo nmcli connection modify <hotspot UUID> connection.autoconnect yes connection.autoconnect-priority 100

@@ -1,0 +1,88 @@
+YAML:
+type: custom:button-card
+entity_picture: /local/spirit_level/spirit-level-background.jpg
+show_entity_picture: true
+size: 100%
+custom_fields:
+  bubble:
+    card:
+      type: custom:button-card
+      entity_picture: /local/spirit_level/spirit-level-Cbubble.png
+      show_entity_picture: true
+      size: 100%
+      styles:
+        card:
+          - box-shadow: none
+          - background-color: rgba(0, 0, 0, 0.0)
+  bubbleV:
+    card:
+      type: custom:button-card
+      entity_picture: /local/spirit_level/spirit-level-Vbubble.png
+      show_entity_picture: true
+      size: 100%
+      styles:
+        card:
+          - box-shadow: none
+          - background-color: rgba(0, 0, 0, 0.0)
+  bubbleH:
+    card:
+      type: custom:button-card
+      entity_picture: /local/spirit_level/spirit-level-Hbubble.png
+      show_entity_picture: true
+      size: 100%
+      styles:
+        card:
+          - box-shadow: none
+          - background-color: rgba(0, 0, 0, 0.0)
+  ovrlay:
+    card:
+      type: custom:button-card
+      entity_picture: /local/spirit_level/spirit-level-overlay.png
+      show_entity_picture: true
+      size: 100%
+      styles:
+        card:
+          - box-shadow: none
+          - background-color: rgba(0, 0, 0, 0.0)
+styles:
+  grid:
+    - position: relative
+  custom_fields:
+    bubble:
+      - position: absolute
+      - width: 8%
+      - left: >
+          [[[ var xx =
+          states['sensor.transit_gps_accel_temps_web_mpu6050_accel_x'].state;
+            return ((xx*1.5) + 33.75)  + "%";
+          ]]]
+      - top: >
+          [[[ var yy =
+          states['sensor.transit_gps_accel_temps_web_mpu6050_accel_y'].state;
+            return ((yy*2) + 30.4)  + "%";
+          ]]]
+      - background-color: '#0000'
+    bubbleV:
+      - position: absolute
+      - width: 8%
+      - left: 83%
+      - top: >
+          [[[ var yy =
+          states['sensor.transit_gps_accel_temps_web_mpu6050_accel_y'].state;
+            return (((yy*2) + 30.4) +11)  + "%";
+          ]]]
+      - background-color: '#0000'
+    bubbleH:
+      - position: absolute
+      - width: 10%
+      - left: >
+          [[[ var xx =
+          states['sensor.transit_gps_accel_temps_web_mpu6050_accel_x'].state;
+            return ((xx*1.5) + 33.75)  + "%";
+          ]]]
+      - top: 76%
+      - background-color: '#0000'
+    ovrlay:
+      - position: absolute
+      - width: 100%
+      - background-color: '#0000'

@@ -1,0 +1,41 @@
+esphome:
+  name: esphome-web-529c30
+  friendly_name: ESPHome_Button_Controller
+  min_version: 2024.11.0
+  name_add_mac_suffix: false
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+# Allow Over-The-Air updates
+ota:
+- platform: esphome
+
+wifi:
+  ssid: Kurt
+  password: Penis6969_
+    
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+    name: "Physical Switch"
+    id: physical_switch
+    on_press:
+      - switch.toggle: virtual_switch
+
+switch:
+  - platform: template
+    name: "Virtual Switch"
+    id: virtual_switch
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF

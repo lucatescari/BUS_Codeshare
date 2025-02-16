@@ -1,0 +1,302 @@
+esphome:
+  name: esphome-web-500f44
+  friendly_name: ESPHome_Victron_Controller
+  min_version: 2024.11.0
+  name_add_mac_suffix: false
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+# Allow Over-The-Air updates
+ota:
+- platform: esphome
+
+wifi:
+  ssid: Kurt
+  password: Penis6969_
+
+external_components:
+  - source: github://Fabian-Schmidt/esphome-victron_ble
+
+esp32_ble_tracker:
+
+victron_ble:
+  - id: SolarCharger # Victron Energy SmartSolar 150/35 MPPT Solar-Laderegler 12/24V/36V/48V Batterie
+    mac_address: "FA:AE:56:7C:D7:3C"
+    bindkey: "1c376426b28595dfacaa9530b61243e1"
+  - id: DCDCConverter # Orion-Tr Smart DC-DC Charger Isolated
+    mac_address: "D1:D5:FB:D6:1E:7E"
+    bindkey: "9a9c77ee143d20236a1b08378120ad62"
+  - id: ACCharger # Victron Energy Blue Smart IP65 12V 15A Batterieladegerät mit Bluetooth
+    mac_address: "F0:AD:DD:E2:C4:2E"
+    bindkey: "31f398ae7d25b0253282e12f5d2a94ef"
+
+sensor:
+  # SolarCharger
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Sensor: SolarCharger: BATTERY_VOLTAGE"
+    type: BATTERY_VOLTAGE
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Sensor: SolarCharger: BATTERY_CURRENT"
+    type: BATTERY_CURRENT
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Sensor: SolarCharger: Battery Power"
+    type: BATTERY_POWER
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Sensor: SolarCharger: LOAD_CURRENT"
+    type: LOAD_CURRENT
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Sensor: SolarCharger: LOAD_POWER"
+    type: LOAD_POWER
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Sensor: SolarCharger: PV_POWER"
+    type: PV_POWER
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Sensor: SolarCharger: YIELD_TODAY"
+    type: YIELD_TODAY
+
+  # DCDCConverter
+  - platform: victron_ble
+    victron_ble_id: DCDCConverter
+    name: "Sensor: DCDCConverter: CHARGER_ERROR"
+    type: CHARGER_ERROR
+
+  - platform: victron_ble
+    victron_ble_id: DCDCConverter
+    name: "Sensor: DCDCConverter: DEVICE_STATE"
+    type: DEVICE_STATE
+
+  - platform: victron_ble
+    victron_ble_id: DCDCConverter
+    name: "Sensor: DCDCConverter: INPUT_VOLTAGE"
+    type: INPUT_VOLTAGE
+
+  - platform: victron_ble
+    victron_ble_id: DCDCConverter
+    name: "Sensor: DCDCConverter: OFF_REASON"
+    type: OFF_REASON
+
+  - platform: victron_ble
+    victron_ble_id: DCDCConverter
+    name: "Sensor: DCDCConverter: OUTPUT_VOLTAGE"
+    type: OUTPUT_VOLTAGE
+
+  # ACCharger
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: AC_CURRENT"
+    type: AC_CURRENT
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: BATTERY_CURRENT"
+    type: BATTERY_CURRENT
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: BATTERY_VOLTAGE"
+    type: BATTERY_VOLTAGE
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: BATTERY_POWER"
+    type: BATTERY_POWER
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: CHARGER_ERROR"
+    type: CHARGER_ERROR
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: DEVICE_STATE"
+    type: DEVICE_STATE
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: TEMPERATURE"
+    type: TEMPERATURE
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: BATTERY_CURRENT_2"
+    type: BATTERY_CURRENT_2
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: BATTERY_VOLTAGE_2"
+    type: BATTERY_VOLTAGE_2
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: BATTERY_POWER_2"
+    type: BATTERY_POWER_2
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: BATTERY_CURRENT_3"
+    type: BATTERY_CURRENT_3
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: BATTERY_VOLTAGE_3"
+    type: BATTERY_VOLTAGE_3
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Sensor: ACCharger: BATTERY_POWER_3"
+    type: BATTERY_POWER_3
+
+binary_sensor:
+  # SolarCharger
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Binary Sensor: SolarCharger: DEVICE_STATE_OFF"
+    type: DEVICE_STATE_OFF
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Binary Sensor: SolarCharger: DEVICE_STATE_FAULT"
+    type: DEVICE_STATE_FAULT
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Binary Sensor: SolarCharger: DEVICE_STATE_BULK"
+    type: DEVICE_STATE_BULK
+    
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Binary Sensor: SolarCharger: DEVICE_STATE_ABSORPTION"
+    type: DEVICE_STATE_ABSORPTION
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Binary Sensor: SolarCharger: DEVICE_STATE_FLOAT"
+    type: DEVICE_STATE_FLOAT
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Binary Sensor: SolarCharger: DEVICE_STATE_EQUALIZE_MANUAL"
+    type: DEVICE_STATE_EQUALIZE_MANUAL
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Binary Sensor: SolarCharger: DEVICE_STATE_STARTING_UP"
+    type: DEVICE_STATE_STARTING_UP
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Binary Sensor: SolarCharger: DEVICE_STATE_AUTO_EQUALIZE"
+    type: DEVICE_STATE_AUTO_EQUALIZE
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Binary Sensor: SolarCharger: DEVICE_STATE_EXTERNAL_CONTROL"
+    type: DEVICE_STATE_EXTERNAL_CONTROL
+
+  # DCDCConverter
+  - platform: victron_ble
+    victron_ble_id: DCDCConverter
+    name: "Binary Sensor: DCDCConverter: CHARGER_ERROR"
+    type: CHARGER_ERROR
+
+  - platform: victron_ble
+    victron_ble_id: DCDCConverter
+    name: "Binary Sensor: DCDCConverter: DEVICE_STATE_OFF"
+    type: DEVICE_STATE_OFF
+
+  - platform: victron_ble
+    victron_ble_id: DCDCConverter
+    name: "Binary Sensor: DCDCConverter: DEVICE_STATE_FAULT"
+    type: DEVICE_STATE_FAULT
+
+  # ACCharger
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Binary Sensor: ACCharger: CHARGER_ERROR"
+    type: CHARGER_ERROR
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Binary Sensor: ACCharger: DEVICE_STATE_OFF"
+    type: DEVICE_STATE_OFF
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Binary Sensor: ACCharger: DEVICE_STATE_FAULT"
+    type: DEVICE_STATE_FAULT
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Binary Sensor: ACCharger: DEVICE_STATE_BULK"
+    type: DEVICE_STATE_BULK
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Binary Sensor: ACCharger: DEVICE_STATE_ABSORPTION"
+    type: DEVICE_STATE_ABSORPTION
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Binary Sensor: ACCharger: DEVICE_STATE_POWER_SUPPLY"
+    type: DEVICE_STATE_POWER_SUPPLY
+
+text_sensor:
+  # SolarCharger
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Text Sensor: SolarCharger: CHARGER_ERROR"
+    type: CHARGER_ERROR
+
+  - platform: victron_ble
+    victron_ble_id: SolarCharger
+    name: "Text Sensor: SolarCharger: DEVICE_STATE"
+    type: DEVICE_STATE
+
+  # DCDCConverter
+  - platform: victron_ble
+    victron_ble_id: DCDCConverter
+    name: "Text Sensor: DCDCConverter: CHARGER_ERROR"
+    type: CHARGER_ERROR
+
+  - platform: victron_ble
+    victron_ble_id: DCDCConverter
+    name: "Text Sensor: DCDCConverter: DEVICE_STATE"
+    type: DEVICE_STATE
+
+  - platform: victron_ble
+    victron_ble_id: DCDCConverter
+    name: "Text Sensor: DCDCConverter: OFF_REASON"
+    type: OFF_REASON
+
+  # ACCharger
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Text Sensor: ACCharger: CHARGER_ERROR"
+    type: CHARGER_ERROR
+
+  - platform: victron_ble
+    victron_ble_id: ACCharger
+    name: "Text Sensor: ACCharger: DEVICE_STATE"
+    type: DEVICE_STATE
